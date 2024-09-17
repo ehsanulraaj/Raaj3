@@ -8,8 +8,8 @@ import java.io.IOException;
          String inputfolderName;
          String outputFolderName;
          if (args.length != 2){
-             inputfolderName = "/Users/tawhidurrahman/Downloads/myFolder ";
-             outputFolderName = "/Users/tawhidurrahman/Downloads/myFolderCopy";
+             inputfolderName = "/Users/ehcraaj/Downloads/myFolder ";
+             outputFolderName = "/Users/ehcraaj/Downloads/myFolderCopy";
          }else {
              inputfolderName = args[0];
              outputFolderName = args[1];

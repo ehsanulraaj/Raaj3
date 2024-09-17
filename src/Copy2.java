@@ -1,4 +1,34 @@
-/*
-   command for windows
-xcopy /E /I C:\path\to\source D:\path\to\destination
-*/
+import java.io.IOException;
+ import java.nio.file.*;
+
+ public class FolderCopy {
+
+     public static void main(String[] args) {
+
+         String inputfolderName;
+         String outputFolderName;
+         if (args.length != 2){
+             inputfolderName = "/Users/tawhidurrahman/Downloads/myFolder ";
+             outputFolderName = "/Users/tawhidurrahman/Downloads/myFolderCopy";
+         }else {
+             inputfolderName = args[0];
+             outputFolderName = args[1];
+         }
+         Path sourceDir = Paths.get(inputfolderName);
+         Path targetDir = Paths.get(outputFolderName);
+
+         try {
+             Files.walk(sourceDir).forEach(source -> {
+                         Path destination = targetDir.resolve(sourceDir.relativize(source));
+                         try {
+                             Files.copy(source, destination, StandardCopyOption.REPLACE_EXISTING);
+                         } catch (IOException e) {
+                             System.err.println("Failed to copy " + source + ": " + e.getMessage());
+                         }
+                     });
+             System.out.println("Folder copied successfully!");
+         } catch (IOException e) {
+             System.err.println("Error while copying folder: " + e.getMessage());
+         }
+     }
+ }
